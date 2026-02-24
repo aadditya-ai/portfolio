@@ -227,37 +227,13 @@
           </ul>
         </div>
       </div>
-   <div class="footer-bottom">
+ <div class="footer-bottom">
         <p>&copy; 2026 Aditya Patel. All rights reserved.</p>
-        <div class="visitor-badge">
-          <span class="icon">👁️</span>
-          <span id="visitor-count">Loading...</span>
-        </div>
+        <p style="margin-top: 0.75rem;">
+          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Faadditya-ai.github.io%2Fportfolio&count_bg=%233B82F6&title_bg=%231d1f28&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=true" alt="visitor badge" style="vertical-align: middle;">
+        </p>
       </div>
-    </div>
-  </footer>
-
- <script>
-    // Using hits.dwyl.com - more reliable
-    fetch('https://hits.dwyl.com/aadditya-ai/portfolio.json')
-      .then(response => response.json())
-      .then(data => {
-        const count = data.total || data.count || 0;
-        document.getElementById('visitor-count').textContent = count.toLocaleString() + ' visitors';
-      })
-      .catch(() => {
-        // Fallback to goatcounter if dwyl fails
-        fetch('https://api.countapi.xyz/hit/aadityapatel-portfolio/visits')
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById('visitor-count').textContent = data.value.toLocaleString() + ' visitors';
-          })
-          .catch(() => {
-            document.getElementById('visitor-count').style.display = 'none';
-          });
-      });
-  </script>
-
+      
 </body>
 </html>
-</html>
+
