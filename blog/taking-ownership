@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How taking ownership of a frustrating customer situation and coordinating across teams turned a potential escalation into a success story.">
+  <title>Taking Ownership: When a Two-Hour Fix Feels Like a Win - Aditya Patel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">AP</a>
+      <button class="mobile-toggle">☰</button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../experience.html">Experience</a></li>
+        <li><a href="../skills.html">Skills</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <article class="section">
+      <div class="container" style="max-width: 800px;">
+        <a href="../blog.html" style="color: var(--accent); margin-bottom: 2rem; display: inline-block;">← Back to Blog</a>
+        <div style="font-size: 3rem; margin-bottom: 1.5rem;">🎯</div>
+        <h1 style="margin-bottom: 1rem;">Taking Ownership: When a Two-Hour Fix Feels Like a Win</h1>
+        <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 3rem;">
+          <span>Jan 22, 2026</span><span>•</span><span>6 min read</span><span>•</span><span>Leadership</span>
+        </div>
+
+        <div style="color: var(--text-secondary); line-height: 1.8;">
+          <p style="font-size: 1.15rem; margin-bottom: 2rem;">
+            Sometimes the hardest part of solving a problem isn't the technical work — it's navigating the human 
+            elements. This is a story about inheriting a frustrated customer, coordinating multiple teams, and 
+            learning when to ask for help.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">Walking Into a Storm</h2>
+          <p>
+            The ticket landed in my queue with a note that made my stomach sink: <em>"Customer is extremely frustrated. 
+            Requesting escalation."</em>
+          </p>
+          <p>
+            I pulled up the ticket history. A customer's server had been compromised and needed to be isolated in a 
+            separate network segment immediately. The request had come in days ago. The previous engineer had taken 
+            the call but never updated the customer or worked on the ticket. Radio silence.
+          </p>
+          <p>
+            Now the customer was understandably angry. When security is compromised, every hour counts. And this 
+            ticket had sat untouched for days.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">Step 1: Own It</h2>
+          <p>
+            I called the customer immediately. His frustration was palpable from the first sentence.
+          </p>
+          <p>
+            I didn't make excuses. I didn't blame the previous engineer. I apologized for the delay and told him 
+            explicitly: <strong>"I'm taking full ownership of this ticket. This will get resolved today, and I'll 
+            keep you updated every step of the way."</strong>
+          </p>
+          <p>
+            I asked him to give me some time to review the full ticket and prepare a solution. He agreed — cautiously. 
+            I'd bought myself maybe an hour of goodwill. I needed to make it count.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">Step 2: Understand the Scope</h2>
+          <p>
+            I read through the entire ticket from start to finish. The requirement was clear but complex:
+          </p>
+          <ol style="margin: 1.5rem 0 1.5rem 2rem; line-height: 2;">
+            <li>Create a new network segment with a fresh IP block and VLAN</li>
+            <li>Configure VLANs across switches, aggregators, firewalls, and hypervisors</li>
+            <li>Trunk the VLAN to appropriate switch ports</li>
+            <li>Configure the new firewall segment with strict isolation rules</li>
+            <li>Block all traffic to other network segments except RDP from their office IP</li>
+            <li>Migrate the compromised server to the new segment with new IP addressing</li>
+          </ol>
+          <p>
+            This touched <strong>six different infrastructure components</strong>: firewalls, switches, aggregators, 
+            routers, hypervisors, and the virtualization platform. I knew firewalls inside and out, but switches and 
+            routers? That wasn't my strong suit.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">Step 3: Know When to Ask for Help</h2>
+          <p>
+            Here's where ego could have gotten in the way. I could have tried to muddle through the switch configurations, 
+            spending hours Googling syntax and hoping I got it right. On a normal ticket, maybe that's fine.
+          </p>
+          <p>
+            But this wasn't a normal ticket. This customer had already waited too long. I didn't have time to learn 
+            switching on the fly. More importantly, <strong>this was a security-critical change</strong>. One 
+            misconfiguration and we could expose the compromised server to the very networks we were trying to isolate 
+            it from.
+          </p>
+          <p>
+            I needed backup.
+          </p>
+          <p>
+            I reached out to a senior engineer on my team who had deep switching and routing experience. I explained 
+            the situation: frustrated customer, time-sensitive security issue, and I needed his expertise to validate 
+            my change plan and handle the components I wasn't confident in.
+          </p>
+          <p>
+            He agreed to join the call.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">Step 4: Coordinate the Chaos</h2>
+          <p>
+            I got back on the Zoom call with the customer, this time with my senior colleague. I'd prepared a detailed 
+            change plan for the firewall segments and access rules. He reviewed the switching and routing components.
+          </p>
+          <p>
+            Then we realized we needed more people. Since the server was virtualized, we needed:
+          </p>
+          <ul style="margin: 1rem 0 1rem 2rem;">
+            <li><strong>Server team:</strong> To reassign IP addressing at the OS level</li>
+            <li><strong>Virtualization team:</strong> To move the VM to the correct VLAN and network segment</li>
+          </ul>
+          <p>
+            I got both teams on the call. Now we had six people in the Zoom: me, my senior colleague, the customer, 
+            and three specialists from different infrastructure teams.
+          </p>
+          <p>
+            It could have been chaos. Instead, we worked methodically:
+          </p>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>Phase 1: Network Foundation</strong></p>
+            <p style="margin: 0;">My senior colleague configured the VLANs across switches and aggregators. 
+            I handled the firewall segment creation and isolation rules.</p>
+          </div>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>Phase 2: Virtualization</strong></p>
+            <p style="margin: 0;">The virtualization team moved the VM to the new VLAN and verified connectivity 
+            at the hypervisor level.</p>
+          </div>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>Phase 3: Server Configuration</strong></p>
+            <p style="margin: 0;">The server team logged into the VM and reconfigured the network interface with 
+            the new private IP addressing.</p>
+          </div>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>Phase 4: Access Rules</strong></p>
+            <p style="margin: 0;">I worked with the customer to identify which office IPs needed RDP access and 
+            configured the firewall rules accordingly.</p>
+          </div>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">Step 5: Verification</h2>
+          <p>
+            After all changes were complete, we tested systematically:
+          </p>
+          <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>✓ Server responding on new IP address</li>
+            <li>✓ RDP accessible from customer's office</li>
+            <li>✓ Traffic blocked to all other internal segments</li>
+            <li>✓ External access blocked except approved IPs</li>
+          </ul>
+          <p>
+            Everything worked. The compromised server was fully isolated but still accessible to authorized users.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">The Aftermath</h2>
+          <p>
+            The customer tested access from his end. He got in immediately. Then he said something that stuck with me:
+          </p>
+          <p style="font-style: italic; padding-left: 2rem; border-left: 3px solid var(--accent); margin: 2rem 0;">
+            "This was a two-hour call. We got six people together, made the changes, tested everything, and it's done. 
+            The last engineer had this ticket for <em>days</em> and didn't even respond. Thank you for actually 
+            taking ownership."
+          </p>
+          <p>
+            He wasn't just thanking me for the technical fix. He was thanking me for the follow-through, the 
+            communication, and the coordination.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">What I Learned</h2>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>1. Ownership isn't just about doing the work yourself</strong></p>
+            <p style="margin: 0;">
+              Taking ownership means ensuring the problem gets solved, even if that means bringing in other people 
+              with better expertise than you. I owned the outcome, not every keystroke.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>2. Communication beats speed</strong></p>
+            <p style="margin: 0;">
+              The customer wasn't mad about the complexity or the time it took. He was mad about the silence. 
+              Keeping him updated and involved turned his frustration into appreciation.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>3. Know your limits, but don't let them limit you</strong></p>
+            <p style="margin: 0;">
+              I wasn't an expert in switching and virtualization. But I knew who was, and I wasn't too proud to ask 
+              for help. That's not weakness — that's resourcefulness.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+            <p style="margin-bottom: 1rem;"><strong>4. Security incidents require urgency</strong></p>
+            <p style="margin: 0;">
+              When a server is compromised, every hour matters. Understanding the stakes changes how you prioritize 
+              and coordinate. This wasn't just a network change — it was an active security response.
+            </p>
+          </div>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">The Bigger Picture</h2>
+          <p>
+            This ticket taught me that some of the most valuable work in IT isn't purely technical. It's about:
+          </p>
+          <ul style="margin: 1.5rem 0 1.5rem 2rem; line-height: 2;">
+            <li>Stepping up when things fall through the cracks</li>
+            <li>Building trust with frustrated customers through transparency</li>
+            <li>Coordinating specialists across teams to solve complex problems</li>
+            <li>Knowing when to lead and when to defer to expertise</li>
+          </ul>
+          <p>
+            Would the problem have gotten solved eventually without me? Probably. But the customer needed someone 
+            to own it <em>right now</em>, communicate clearly, and drive it to completion.
+          </p>
+          <p>
+            Sometimes that's the most important role you can play.
+          </p>
+
+          <div style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--accent); padding: 1.5rem; margin: 3rem 0;">
+            <p style="margin: 0;">
+              <strong>Takeaway:</strong> True ownership isn't about doing everything yourself. It's about making 
+              sure the right things happen, even when that means orchestrating other people's expertise.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+          <a href="../blog.html" style="color: var(--accent);">← Back to Blog</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Aditya Patel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
