@@ -784,26 +784,31 @@ code {
   
   .nav-brand {
     font-size: 1.1rem;
+    flex-shrink: 0;
   }
   
   .nav-links {
     display: flex;
     flex-direction: row;
-    gap: 1.2rem;
-    font-size: 0.7rem;
+    gap: 1.5rem;
+    font-size: 0.85rem;
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-right: 1rem;
+    flex: 1;
   }
   
   .nav-links::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
   }
   
   .nav-links a {
     white-space: nowrap;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
+    padding: 0.2rem 0;
   }
   
   .theme-toggle {
@@ -842,20 +847,6 @@ code {
   .timeline {
     padding-left: 1rem;
   }
-  
-  .timeline-item {
-    padding-left: 1.5rem;
-  }
-  
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
 /* ═══════════════════════════════════════════════════════════
    UTILITIES
    ═══════════════════════════════════════════════════════════ */
