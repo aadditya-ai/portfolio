@@ -50,15 +50,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Add active class to current page nav link
+// Add active class to current page nav link
 document.addEventListener('DOMContentLoaded', function() {
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.nav-links a');
   
+  // Remove all active classes first
+  navLinks.forEach(link => link.classList.remove('active'));
+  
+  // Add active to the matching page
   navLinks.forEach(link => {
     const linkPath = new URL(link.href).pathname;
-    if (currentPath === linkPath || 
-        (currentPath.endsWith('/') && linkPath === '/index.html') ||
-        (currentPath === '/' && linkPath === '/index.html')) {
+    const linkFile = linkPath.split('/').pop() || 'index.html';
+    const currentFile = currentPath.split('/').pop() || 'index.html';
+    
+    // Match current file to link
+    if (linkFile === currentFile) {
+      link.classList.add('active');
+    }
+    // Special case for blog posts - highlight Blog
+    else if (currentPath.includes('/blog/') && linkFile === 'blog.html') {
+      link.classList.add('active');
+    }
+    // Home page variations
+    else if ((currentPath === '/' || currentPath.endsWith('/portfolio/') || currentPath.endsWith('/portfolio')) && linkFile === 'index.html') {
       link.classList.add('active');
     }
   });
