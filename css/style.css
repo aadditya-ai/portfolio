@@ -875,6 +875,22 @@ code {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+   .visitor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-top: 0.75rem;
+}
+
+.visitor-badge .icon {
+  color: var(--accent);
+}
 }
 /* ═══════════════════════════════════════════════════════════
    UTILITIES
