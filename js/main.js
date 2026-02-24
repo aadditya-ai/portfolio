@@ -63,3 +63,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+// Theme Toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.querySelector('.theme-toggle');
+  const themeIcon = document.querySelector('.theme-icon');
+  
+  // Check for saved theme preference or default to dark mode
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  if (currentTheme === 'light') {
+    document.body.classList.add('light-mode');
+    if (themeIcon) themeIcon.textContent = '☀️';
+  }
+  
+  // Theme toggle functionality
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      document.body.classList.toggle('light-mode');
+      
+      // Update icon and save preference
+      if (document.body.classList.contains('light-mode')) {
+        if (themeIcon) themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+      } else {
+        if (themeIcon) themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  }
+});
