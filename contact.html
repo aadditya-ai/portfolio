@@ -136,37 +136,6 @@
             <li><a href="blog.html">Blog</a></li>
           </ul>
         </div>
-        <div class="footer-section">
-          <h3>Connect</h3>
-          <ul class="footer-links">
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="mailto:aditya10328@gmail.com">Email</a></li>
-            <li><a href="tel:+918957208416">Phone</a></li>
-          </ul>
-        </div>
-      </div>
-     <div class="footer-bottom">
-        <p>&copy; 2026 Aditya Patel. All rights reserved.</p>
-        <div class="visitor-badge">
-          <span class="icon">👁️</span>
-          <span id="visitor-count">Loading...</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-<script>
-    fetch('https://api.countapi.xyz/hit/aadditya-ai-portfolio/visits')
-      .then(response => response.json())
-      .then(data => {
-        const count = data.value.toLocaleString();
-        document.getElementById('visitor-count').textContent = count + ' visitors';
-      })
-      .catch(() => {
-        document.getElementById('visitor-count').textContent = '- visitors';
-      });
-  </script>
-
+        
 </body>
 </html>
