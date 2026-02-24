@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Authentication Protocols - Aditya Patel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">AP</a>
+      <button class="mobile-toggle">☰</button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../experience.html">Experience</a></li>
+        <li><a href="../skills.html">Skills</a></li>
+        <li><a href="../blog.html" class="active">Blog</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <article class="section">
+      <div class="container" style="max-width: 800px;">
+        <a href="../blog.html" style="color: var(--accent); margin-bottom: 2rem; display: inline-block;">← Back to Blog</a>
+        <div style="font-size: 3rem; margin-bottom: 1.5rem;">🔒</div>
+        <h1 style="margin-bottom: 1rem;">Email Authentication Protocols: SPF, DKIM, and DMARC Explained</h1>
+        <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 3rem;">
+          <span>Jan 10, 2026</span><span>•</span><span>7 min read</span>
+        </div>
+
+        <div style="color: var(--text-secondary); line-height: 1.8;">
+          <p style="font-size: 1.15rem; margin-bottom: 2rem;">
+            Email authentication protocols are your first line of defense against phishing, spoofing, and impersonation attacks. 
+            Here's how SPF, DKIM, and DMARC work together to protect your domain and improve deliverability.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">The Email Security Problem</h2>
+          <p>
+            Email was designed in an era when security wasn't a priority. By default, anyone can claim to send email 
+            from any domain. This makes phishing and spoofing trivially easy for attackers.
+          </p>
+          <p>
+            Authentication protocols solve this by giving domain owners ways to:
+          </p>
+          <ul style="margin: 1rem 0 1rem 2rem;">
+            <li>Specify which servers can send email on their behalf (SPF)</li>
+            <li>Cryptographically sign their messages (DKIM)</li>
+            <li>Tell receivers what to do with unauthenticated emails (DMARC)</li>
+          </ul>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">SPF (Sender Policy Framework)</h2>
+          <p>
+            SPF lets you publish a list of authorized mail servers for your domain via DNS records.
+          </p>
+          <p>
+            <strong>How it works:</strong> When a mail server receives email claiming to be from your domain, 
+            it checks your SPF record to verify the sending server is authorized.
+          </p>
+          <code style="display: block; padding: 1rem; background: var(--bg-tertiary); border-radius: 4px; margin: 1rem 0;">
+            v=spf1 include:_spf.google.com include:amazonses.com ~all
+          </code>
+          <p>
+            This record says: "Accept email from Google's servers and Amazon SES. Soft-fail everything else."
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">DKIM (DomainKeys Identified Mail)</h2>
+          <p>
+            DKIM adds a cryptographic signature to your emails, proving they weren't tampered with in transit 
+            and confirming the sender's identity.
+          </p>
+          <p>
+            <strong>How it works:</strong> Your mail server signs outgoing messages with a private key. 
+            Receivers verify the signature using your public key (published in DNS).
+          </p>
+          <p>
+            Unlike SPF which checks the sending server, DKIM validates the message itself. This means forwarded 
+            emails can still pass DKIM checks.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">DMARC (Domain-based Message Authentication)</h2>
+          <p>
+            DMARC ties SPF and DKIM together and tells receivers what to do when authentication fails.
+          </p>
+          <p>
+            <strong>DMARC policies:</strong>
+          </p>
+          <ul style="margin: 1rem 0 1rem 2rem;">
+            <li><code>p=none</code> — Monitor only, don't take action</li>
+            <li><code>p=quarantine</code> — Send suspicious emails to spam</li>
+            <li><code>p=reject</code> — Block unauthenticated emails entirely</li>
+          </ul>
+          <p>
+            DMARC also provides reporting, so you can see who's trying to send email claiming to be from your domain.
+          </p>
+
+          <h2 style="color: var(--accent); margin: 2rem 0 1rem;">Implementation Strategy</h2>
+          <ol style="margin-left: 2rem; line-height: 2;">
+            <li><strong>Start with SPF:</strong> Identify all legitimate sending sources and create your SPF record</li>
+            <li><strong>Add DKIM:</strong> Configure your mail servers or ESP to sign messages</li>
+            <li><strong>Deploy DMARC in monitor mode:</strong> Use <code>p=none</code> to collect data without impacting delivery</li>
+            <li><strong>Analyze reports:</strong> Identify any legitimate sources you missed</li>
+            <li><strong>Gradually enforce:</strong> Move to <code>p=quarantine</code>, then <code>p=reject</code> as confidence builds</li>
+          </ol>
+
+          <div style="background: var(--bg-secondary); border-left: 4px solid var(--accent); padding: 1.5rem; margin: 2rem 0;">
+            <p style="margin: 0;"><strong>Pro tip:</strong> Monitor your DMARC reports regularly. They reveal phishing attempts 
+            against your domain and help identify misconfigured services trying to send on your behalf.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Aditya Patel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
