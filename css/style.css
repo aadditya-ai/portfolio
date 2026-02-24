@@ -775,11 +775,15 @@ code {
   
   .navbar {
     padding: 0;
+    overflow-x: hidden;
   }
   
   .nav-container {
     padding: 0.8rem 1rem;
-    gap: 1rem;
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    overflow-x: visible;
   }
   
   .nav-brand {
@@ -787,35 +791,46 @@ code {
     flex-shrink: 0;
   }
   
+  /* Wrapper div that contains nav-links and theme-toggle */
+  .nav-container > div {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .nav-container > div::-webkit-scrollbar {
+    display: none;
+  }
+  
   .nav-links {
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
     font-size: 0.85rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-right: 1rem;
-    flex: 1;
-  }
-  
-  .nav-links::-webkit-scrollbar {
-    display: none;
+    padding: 0 0.5rem;
+    margin: 0;
+    list-style: none;
+    flex-shrink: 0;
   }
   
   .nav-links a {
     white-space: nowrap;
     font-size: 0.85rem;
     padding: 0.2rem 0;
+    display: block;
   }
   
   .theme-toggle {
     width: 36px;
     height: 36px;
     font-size: 1rem;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
     flex-shrink: 0;
   }
   
@@ -847,6 +862,20 @@ code {
   .timeline {
     padding-left: 1rem;
   }
+  
+  .timeline-item {
+    padding-left: 1.5rem;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
 /* ═══════════════════════════════════════════════════════════
    UTILITIES
    ═══════════════════════════════════════════════════════════ */
