@@ -195,8 +195,9 @@ code {
   justify-content: center;
   transition: all 0.3s ease;
   margin-left: 1rem;
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-  touch-action: manipulation; /* Improve touch response */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .theme-toggle:hover {
@@ -207,6 +208,10 @@ code {
 
 .theme-toggle:active {
   transform: scale(0.95);
+}
+
+.theme-icon {
+  pointer-events: none;
 }
 /* ═══════════════════════════════════════════════════════════
    LAYOUT
