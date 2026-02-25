@@ -50,7 +50,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Add active class to current page nav link
-// Add active class to current page nav link
 document.addEventListener('DOMContentLoaded', function() {
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -78,57 +77,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
 // Theme Toggle
-// Theme Toggle - Works on both mobile and desktop
-(function() {
-  function initTheme() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const themeIcon = document.querySelector('.theme-icon');
-    
-    if (!themeToggle || !themeIcon) return;
-    
-    // Check for saved theme preference or default to dark mode
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    if (currentTheme === 'light') {
-      document.body.classList.add('light-mode');
-      themeIcon.textContent = '☀️';
-    } else {
-      themeIcon.textContent = '🌙';
-    }
-    
-    // Toggle function
-    function toggleTheme(e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      
-      document.body.classList.toggle('light-mode');
-      
-      // Update icon and save preference
-      if (document.body.classList.contains('light-mode')) {
-        themeIcon.textContent = '☀️';
-        localStorage.setItem('theme', 'light');
-      } else {
-        themeIcon.textContent = '🌙';
-        localStorage.setItem('theme', 'dark');
-      }
-    }
-    
-    // Add multiple event listeners for maximum compatibility
-    themeToggle.addEventListener('click', toggleTheme, false);
-    themeToggle.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      toggleTheme();
-    }, { passive: false });
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.querySelector('.theme-toggle');
+  const themeIcon = document.querySelector('.theme-icon');
+  
+  if (!themeToggle || !themeIcon) {
+    console.log('Theme button not found');
+    return;
   }
   
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTheme);
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+    themeIcon.textContent = '☀️';
   } else {
-    initTheme();
+    themeIcon.textContent = '🌙';
   }
-})();
-  }
+  
+  // Toggle theme on click
+  themeToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    document.body.classList.toggle('light-mode');
+    
+    if (document.body.classList.contains('light-mode')) {
+      themeIcon.textContent = '☀️';
+      localStorage.setItem('theme', 'light');
+    } else {
+      themeIcon.textContent = '🌙';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+  
+  // Mobile touch support
+  themeToggle.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    themeToggle.click();
+  });
 });
