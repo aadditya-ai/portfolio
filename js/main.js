@@ -79,40 +79,56 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 // Theme Toggle
-// Theme Toggle
-document.addEventListener('DOMContentLoaded', function() {
-  const themeToggle = document.querySelector('.theme-toggle');
-  const themeIcon = document.querySelector('.theme-icon');
-  
-  // Check for saved theme preference or default to dark mode
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-  if (currentTheme === 'light') {
-    document.body.classList.add('light-mode');
-    if (themeIcon) themeIcon.textContent = '☀️';
-  }
-  
-  // Theme toggle functionality - support both click and touch
-  if (themeToggle) {
-    const toggleTheme = function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+// Theme Toggle - Works on both mobile and desktop
+(function() {
+  function initTheme() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    
+    if (!themeToggle || !themeIcon) return;
+    
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+      document.body.classList.add('light-mode');
+      themeIcon.textContent = '☀️';
+    } else {
+      themeIcon.textContent = '🌙';
+    }
+    
+    // Toggle function
+    function toggleTheme(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       
       document.body.classList.toggle('light-mode');
       
       // Update icon and save preference
       if (document.body.classList.contains('light-mode')) {
-        if (themeIcon) themeIcon.textContent = '☀️';
+        themeIcon.textContent = '☀️';
         localStorage.setItem('theme', 'light');
       } else {
-        if (themeIcon) themeIcon.textContent = '🌙';
+        themeIcon.textContent = '🌙';
         localStorage.setItem('theme', 'dark');
       }
-    };
+    }
     
-    // Add both click and touchend listeners for mobile
-    themeToggle.addEventListener('click', toggleTheme);
-    themeToggle.addEventListener('touchend', toggleTheme);
+    // Add multiple event listeners for maximum compatibility
+    themeToggle.addEventListener('click', toggleTheme, false);
+    themeToggle.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      toggleTheme();
+    }, { passive: false });
   }
-});
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTheme);
+  } else {
+    initTheme();
+  }
+})();
   }
 });
