@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 // Theme Toggle
+// Theme Toggle
 document.addEventListener('DOMContentLoaded', function() {
   const themeToggle = document.querySelector('.theme-toggle');
   const themeIcon = document.querySelector('.theme-icon');
@@ -90,9 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (themeIcon) themeIcon.textContent = '☀️';
   }
   
-  // Theme toggle functionality
+  // Theme toggle functionality - support both click and touch
   if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
+    const toggleTheme = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
       document.body.classList.toggle('light-mode');
       
       // Update icon and save preference
@@ -103,6 +107,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (themeIcon) themeIcon.textContent = '🌙';
         localStorage.setItem('theme', 'dark');
       }
-    });
+    };
+    
+    // Add both click and touchend listeners for mobile
+    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener('touchend', toggleTheme);
+  }
+});
   }
 });
